@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome - Double C Ranch{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 text-center">
+        <h1 class="display-3 text-maroon mb-4">🐴 Welcome to Double C Ranch</h1>
+        <p class="lead mb-5">Your premier equestrian facility for riding lessons, training, and horsemanship.</p>
+        
+        {% if not user.is_authenticated %}
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title text-maroon">New Member?</h3>
+                        <p class="card-text">Join our ranch family and start your equestrian journey today.</p>
+                        <a href="/register/" class="btn btn-primary btn-lg">Register Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title text-maroon">Existing Member?</h3>
+                        <p class="card-text">Access your dashboard, schedule lessons, and track your progress.</p>
+                        <a href="/login/" class="btn btn-primary btn-lg">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="card">
+            <div class="card-body">
+                <h3 class="text-maroon">Welcome back, {{ user.email }}!</h3>
+                <p class="mb-3">Ready to continue your equestrian journey?</p>
+                {% if user.member_profile %}
+                <a href="/dashboard/" class="btn btn-primary btn-lg">Go to Dashboard</a>
+                {% elif user.is_staff %}
+                <a href="/admin/" class="btn btn-primary btn-lg">Go to Admin Panel</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+/* Double C Ranch Portal - Maroon Theme */
+
+:root {
+    --maroon: #800000;
+    --maroon-dark: #5c0000;
+    --maroon-light: #a52a2a;
+    --gold: #d4af37;
+    --gray-light: #f8f9fa;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main {
+    flex: 1;
+}
+
+.navbar {
+    background-color: var(--maroon) !important;
+}
+
+.btn-primary {
+    background-color: var(--maroon);
+    border-color: var(--maroon);
+}
+
+.btn-primary:hover {
+    background-color: var(--maroon-dark);
+    border-color: var(--maroon-dark);
+}
+
+.text-maroon {
+    color: var(--maroon) !important;
+}
+
+.bg-maroon {
+    background-color: var(--maroon) !important;
+}
+
+.card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 4px solid var(--maroon);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(128, 0, 0, 0.2);
+}
+
+.alert-info {
+    background-color: #e8f4f8;
+    border-color: var(--maroon-light);
+    color: var(--maroon-dark);
+}
+
+footer {
+    background-color: var(--maroon);
+    color: white;
+    padding: 1.5rem 0;
+    margin-top: auto;
+}

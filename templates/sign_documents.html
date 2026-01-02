@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Documents - Double C Ranch{% endblock %}
+
+{% block content %}
+<h1 class="text-maroon mb-4">Required Documents</h1>
+
+{% if not documents %}
+<div class="alert alert-success">
+    <h5 class="alert-heading">✅ All Documents Signed</h5>
+    <p>You have signed all required documents. Thank you!</p>
+    <a href="/dashboard/" class="btn btn-success">Return to Dashboard</a>
+</div>
+{% else %}
+<p class="lead">Please review and sign the following documents to complete your registration.</p>
+
+{% for document in documents %}
+<div class="card mb-4">
+    <div class="card-body">
+        <h4 class="card-title text-maroon">{{ document.title }}</h4>
+        <div class="border p-3 bg-light mb-3" style="max-height: 400px; overflow-y: auto;">
+            {{ document.content|linebreaks }}
+        </div>
+        
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="document_id" value="{{ document.id }}">
+            
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="agree-{{ document.id }}" required>
+                <label class="form-check-label" for="agree-{{ document.id }}">
+                    I have read and agree to the terms of this document
+                </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Sign Document</button>
+        </form>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}

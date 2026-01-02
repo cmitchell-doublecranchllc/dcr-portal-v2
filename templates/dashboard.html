@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Double C Ranch{% endblock %}
+
+{% block content %}
+<h1 class="text-maroon mb-4">Welcome, {{ member.first_name }}!</h1>
+
+{% if unsigned_documents %}
+<div class="alert alert-warning">
+    <h5 class="alert-heading">⚠️ Action Required</h5>
+    <p>You have {{ unsigned_documents.count }} document(s) that need to be signed before you can fully access all features.</p>
+    <a href="/sign-documents/" class="btn btn-warning">Sign Documents Now</a>
+</div>
+{% endif %}
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-maroon">Member Status</h5>
+                <p class="card-text">
+                    <strong>Status:</strong> 
+                    <span class="badge {% if member.status == 'Approved' %}bg-success{% elif member.status == 'Pending' %}bg-warning{% else %}bg-danger{% endif %}">
+                        {{ member.status }}
+                    </span>
+                </p>
+                <p class="card-text"><strong>Member Since:</strong> {{ member.created_at|date:"M d, Y" }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-maroon">Contact Information</h5>
+                <p class="card-text mb-1"><strong>Email:</strong> {{ user.email }}</p>
+                <p class="card-text mb-1"><strong>Phone:</strong> {{ member.phone }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-maroon">Emergency Contact</h5>
+                <p class="card-text mb-1"><strong>Name:</strong> {{ member.emergency_contact_name }}</p>
+                <p class="card-text mb-1"><strong>Phone:</strong> {{ member.emergency_contact_phone }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title text-maroon">Quick Actions</h5>
+                <div class="d-flex gap-2 flex-wrap">
+                    {% if unsigned_documents %}
+                    <a href="/sign-documents/" class="btn btn-primary">Sign Documents</a>
+                    {% endif %}
+                    <a href="/admin/" class="btn btn-outline-secondary">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
