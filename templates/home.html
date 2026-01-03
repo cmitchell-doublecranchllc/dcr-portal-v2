@@ -5,7 +5,11 @@
 {% block content %}
 <div class="row justify-content-center mt-5">
     <div class="col-md-8 text-center">
-        <h1 class="display-3 text-maroon mb-4">🐴 Welcome to Double C Ranch</h1>
+        {% load static %}
+        <div class="mb-4">
+            <img src="{% static 'logo.png' %}" alt="Double C Ranch Logo" style="height: 80px; margin-bottom: 20px;">
+            <h1 class="display-3 text-maroon">Welcome to Double C Ranch</h1>
+        </div>
         <p class="lead mb-5">Your premier equestrian facility for riding lessons, training, and horsemanship.</p>
         
         {% if not user.is_authenticated %}
